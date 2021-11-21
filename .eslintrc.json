@@ -1,0 +1,11 @@
+{
+  "extends": ["eslint:recommended", "google", "prettier"],
+  "plugins": ["react"],
+  "rules": {
+  },
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  }
+}
