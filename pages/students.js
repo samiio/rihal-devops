@@ -1,11 +1,8 @@
-import Head from "next/head";
+import Meta from "../components/Meta";
 
 const StudentsPage = () => (
   <div>
-    <Head>
-      <title>Rihal Assignment</title>
-      <link rel="shortcut icon" href="rihal.jpg" />
-    </Head>
+    <Meta title="Students" />
   </div>
 );
 
