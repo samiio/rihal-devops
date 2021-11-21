@@ -1,11 +1,12 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider } from "@chakra-ui/react";
+import Layout from "../components/Layout";
 
-const App = ({ Component }) => {
-  return (
-    <ChakraProvider>
+const App = ({ Component }) => (
+  <ChakraProvider>
+    <Layout>
       <Component />
-    </ChakraProvider>
-  )
-}
+    </Layout>
+  </ChakraProvider>
+);
 
 export default App;
