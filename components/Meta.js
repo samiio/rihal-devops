@@ -7,6 +7,11 @@ const Meta = ({ title }) => {
       <meta charSet="utf-8" />
       <link rel="icon" href="rihal.jpg" />
       <title>{title}</title>
+      <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      ></script>
+      <script type="text/javascript" src="/js/model.js"></script>
     </Head>
   );
 };
