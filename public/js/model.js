@@ -126,50 +126,50 @@ class Students extends Table {
 }
 
 // Classes
-const bio = new Class("Biology");
-const math = new Class("Mathematics");
-const myClasses = new Classes();
-myClasses.add(bio);
-myClasses.add(math);
+// const bio = new Class("Biology");
+// const math = new Class("Mathematics");
+// const myClasses = new Classes();
+// myClasses.add(bio);
+// myClasses.add(math);
 
-console.table(myClasses.table);
+// console.log(myClasses.table);
 
-// Countries
-const uk = new Country("United Kingdom");
-const om = new Country("Oman");
-const fr = new Country("France");
-const countries = new Countries();
-countries.add(uk);
-countries.add(om);
-countries.add(fr);
+// // Countries
+// const uk = new Country("United Kingdom");
+// const om = new Country("Oman");
+// const fr = new Country("France");
+// const countries = new Countries();
+// countries.add(uk);
+// countries.add(om);
+// countries.add(fr);
 
-console.table(countries.table);
+// console.table(countries.table);
 
-// Students
-const mo = new Student("Mohammed", "click");
-const jack = new Student("Jack", "click");
-const ali = new Student("Ali", "click");
+// // Students
+// const mo = new Student("Mohammed", "click");
+// const jack = new Student("Jack", "click");
+// const ali = new Student("Ali", "click");
 
-mo.addClass(bio.id);
-mo.addCountry(om.id);
+// mo.addClass(bio.id);
+// mo.addCountry(om.id);
 
-jack.addClass(bio.id);
-jack.addCountry(uk.id);
-jack.addCountry(fr.id);
+// jack.addClass(bio.id);
+// jack.addCountry(uk.id);
+// jack.addCountry(fr.id);
 
-ali.addClass(bio.id);
-ali.addCountry(om.id);
+// ali.addClass(bio.id);
+// ali.addCountry(om.id);
 
-const students = new Students();
-students.add(mo);
-students.add(jack);
-students.add(ali);
+// const students = new Students();
+// students.add(mo);
+// students.add(jack);
+// students.add(ali);
 
-console.table(students.table);
+// console.table(students.table);
 
-console.log(`Omani students: ${om.getCount(students.table)}`);
-console.log(`British students: ${uk.getCount(students.table)}`);
-console.log(`Biology students: ${bio.getCount(students.table)}`);
+// console.log(`Omani students: ${om.getCount(students.table)}`);
+// console.log(`British students: ${uk.getCount(students.table)}`);
+// console.log(`Biology students: ${bio.getCount(students.table)}`);
 
-students.remove(2);
-console.table(students.table);
+// students.remove(2);
+// console.table(students.table);
