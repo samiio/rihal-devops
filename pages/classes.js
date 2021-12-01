@@ -1,19 +1,9 @@
 import Meta from "../components/Meta";
-import { classController, events } from "rihal-devops-model";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Button,
-  Input,
-} from "@chakra-ui/react";
+import { classController } from "rihal-devops-model";
+import { useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import TableClass from "../components/TableClass";
+import CreateClassModal from "../components/CreateClassModal";
 
 const ClassesPage = () => {
   const [classes, setClasses] = useState(classController.getAll().table);
@@ -36,42 +26,15 @@ const ClassesPage = () => {
     <div>
       <Meta title="Classes" />
 
-      {/* Modal */}
-      <div>
-        <Button colorScheme="blue" onClick={onOpen}>
-          Add
-        </Button>
+      <CreateClassModal
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        name={name}
+        setName={setName}
+        createClicked={handleCreateClick}
+      />
 
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Add Class</ModalHeader>
-            <ModalCloseButton />
-
-            <form onSubmit={handleCreateClick}>
-              <ModalBody>
-                <Input
-                  placeholder="Title"
-                  variant="filled"
-                  mb={6}
-                  type="text"
-                  isRequired="true"
-                  onChange={(e) => setName(e.target.value)}
-                  value={name}
-                />
-              </ModalBody>
-
-              <ModalFooter>
-                <Button colorScheme="blue" type="submit">
-                  Add
-                </Button>
-              </ModalFooter>
-            </form>
-          </ModalContent>
-        </Modal>
-      </div>
-
-      {/* Table */}
       <TableClass classList={classes} destroy={handleDestroyClick} />
     </div>
   );
