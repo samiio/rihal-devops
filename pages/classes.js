@@ -26,6 +26,13 @@ const ClassesPage = () => {
     setClasses(classController.getAll().table);
   };
 
+  const [editName, setEditName] = useState("");
+  const handleEditClick = (e) => {
+    e.preventDefault();
+    classController.update(e.target.id, editName);
+    setClasses(classController.getAll().table);
+  };
+
   return (
     <div>
       <Meta title="Classes" />
@@ -41,7 +48,13 @@ const ClassesPage = () => {
         />
       </Center>
 
-      <ClassTable classList={classes} destroy={handleDestroyClick} />
+      <ClassTable
+        classList={classes}
+        destroy={handleDestroyClick}
+        edit={handleEditClick}
+        editName={editName}
+        setEditName={setEditName}
+      />
     </div>
   );
 };
