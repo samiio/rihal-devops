@@ -6,8 +6,12 @@ import { useState } from "react";
 import TableClass from "../components/TableClass";
 
 const ClassesPage = () => {
-  const classList = classController.getAll();
-  const [myClasses, setClasses] = useState(classList.table);
+  const [classes, setClasses] = useState(classController.getAll().table);
+
+  const handleDestroyClick = (id) => {
+    classController.destroy(id);
+    setClasses(classController.getAll().table);
+  };
 
   return (
     <div>
@@ -15,10 +19,7 @@ const ClassesPage = () => {
 
       <AddClassModal />
 
-      <TableClass
-        classList={classList.table}
-        destroy={classController.destroy}
-      />
+      <TableClass classList={classes} destroy={handleDestroyClick} />
     </div>
   );
 };
