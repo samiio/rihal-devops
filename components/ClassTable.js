@@ -8,6 +8,7 @@ import {
   TableCaption,
   Button,
 } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 const ClassTable = ({ classList, destroy }) => (
   <Table variant="striped" size="lg">
@@ -28,7 +29,7 @@ const ClassTable = ({ classList, destroy }) => (
           </Td>
           <Td>
             <Button colorScheme="red" onClick={() => destroy(el.id)}>
-              Delete
+              <DeleteIcon />
             </Button>
           </Td>
         </Tr>
