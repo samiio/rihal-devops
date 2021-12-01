@@ -9,7 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const TableClass = ({ classList, destroy }) => (
+const ClassTable = ({ classList, destroy }) => (
   <Table variant="striped" size="lg">
     <TableCaption placement="top">Available classes</TableCaption>
     <Thead>
@@ -27,10 +27,7 @@ const TableClass = ({ classList, destroy }) => (
             <Button colorScheme="teal">Edit</Button>
           </Td>
           <Td>
-            <Button
-              colorScheme="red"
-              onClick={() => destroy(el.id)}
-            >
+            <Button colorScheme="red" onClick={() => destroy(el.id)}>
               Delete
             </Button>
           </Td>
@@ -40,4 +37,4 @@ const TableClass = ({ classList, destroy }) => (
   </Table>
 );
 
-export default TableClass;
+export default ClassTable;

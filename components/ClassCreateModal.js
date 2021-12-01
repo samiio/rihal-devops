@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 
-const CreateClassModal = ({
+const ClassCreateModal = ({
   isOpen,
   onOpen,
   onClose,
@@ -56,4 +56,4 @@ const CreateClassModal = ({
   );
 };
 
-export default CreateClassModal;
+export default ClassCreateModal;

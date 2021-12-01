@@ -2,8 +2,8 @@ import Meta from "../components/Meta";
 import { classController } from "rihal-devops-model";
 import { useDisclosure, Center } from "@chakra-ui/react";
 import { useState } from "react";
-import TableClass from "../components/TableClass";
-import CreateClassModal from "../components/CreateClassModal";
+import ClassTable from "../components/ClassTable";
+import ClassCreateModal from "../components/ClassCreateModal";
 
 const ClassesPage = () => {
   const [classes, setClasses] = useState(classController.getAll().table);
@@ -27,7 +27,7 @@ const ClassesPage = () => {
       <Meta title="Classes" />
 
       <Center>
-        <CreateClassModal
+        <ClassCreateModal
           isOpen={isOpen}
           onOpen={onOpen}
           onClose={onClose}
@@ -37,7 +37,7 @@ const ClassesPage = () => {
         />
       </Center>
 
-      <TableClass classList={classes} destroy={handleDestroyClick} />
+      <ClassTable classList={classes} destroy={handleDestroyClick} />
     </div>
   );
 };
