@@ -11,7 +11,7 @@ const Layout = ({ children }) => (
           height="full"
           padding={10}
           spacing={10}
-          alignItems="flex-start"
+          alignItems="center"
           bg="gray.50"
         >
           {children}
