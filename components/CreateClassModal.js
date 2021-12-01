@@ -9,6 +9,7 @@ import {
   Button,
   Input,
 } from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
 
 const CreateClassModal = ({
   isOpen,
@@ -20,8 +21,8 @@ const CreateClassModal = ({
 }) => {
   return (
     <div>
-      <Button colorScheme="blue" onClick={onOpen}>
-        Add
+      <Button colorScheme="blue" w={8} h={8} onClick={onOpen} borderRadius={50}>
+        <AddIcon />
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
