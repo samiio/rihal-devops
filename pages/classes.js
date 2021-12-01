@@ -1,4 +1,6 @@
 import Meta from "../components/Meta";
+import AddClassModal from "../components/AddClassModal";
+import { classController } from "rihal-devops-model";
 import {
   Table,
   Thead,
@@ -12,14 +14,14 @@ import {
 import { useState } from "react";
 
 const ClassesPage = () => {
-  const [myClasses, setClasses] = useState([
-    { id: 1, name: "Biology" },
-    { id: 2, name: "Mathematics" },
-  ]);
+  const classList = classController.getAll();
+  const [myClasses, setClasses] = useState(classList.table);
 
   return (
     <div>
       <Meta title="Classes" />
+
+      <AddClassModal />
 
       <Table variant="striped" size="lg">
         <TableCaption placement="top">Available classes</TableCaption>
@@ -31,14 +33,19 @@ const ClassesPage = () => {
         </Thead>
         <Tbody>
           {myClasses.map((el) => (
-            <Tr id={el.id}>
+            <Tr key={el.id}>
               <Td isNumeric>{el.id}</Td>
               <Td>{el.name}</Td>
               <Td>
                 <Button colorScheme="teal">Edit</Button>
               </Td>
               <Td>
-                <Button colorScheme="red">Delete</Button>
+                <Button
+                  colorScheme="red"
+                  onClick={() => classController.destroy(el.id)}
+                >
+                  Delete
+                </Button>
               </Td>
             </Tr>
           ))}
