@@ -8,17 +8,21 @@ import ClassCreateModal from "../components/ClassCreateModal";
 const ClassesPage = () => {
   const [classes, setClasses] = useState(classController.getAll().table);
   const [name, setName] = useState("");
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const handleDestroyClick = (id) => {
-    classController.destroy(id);
-    setClasses(classController.getAll().table);
-  };
+  const {
+    isOpen: isCreateOpen,
+    onOpen: onCreateOpen,
+    onClose: onCreateClose,
+  } = useDisclosure();
 
   const handleCreateClick = (e) => {
     e.preventDefault();
     classController.create(name);
-    onClose();
+    onCreateClose();
+    setClasses(classController.getAll().table);
+  };
+
+  const handleDestroyClick = (id) => {
+    classController.destroy(id);
     setClasses(classController.getAll().table);
   };
 
@@ -28,9 +32,9 @@ const ClassesPage = () => {
 
       <Center>
         <ClassCreateModal
-          isOpen={isOpen}
-          onOpen={onOpen}
-          onClose={onClose}
+          isOpen={isCreateOpen}
+          onOpen={onCreateOpen}
+          onClose={onCreateClose}
           name={name}
           setName={setName}
           createClicked={handleCreateClick}

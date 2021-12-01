@@ -34,7 +34,7 @@ const ClassCreateModal = ({
           <form onSubmit={createClicked}>
             <ModalBody>
               <Input
-                placeholder="Title"
+                placeholder="Name"
                 variant="filled"
                 mb={6}
                 type="text"
