@@ -7,19 +7,20 @@ import {
   Td,
   TableCaption,
   Button,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Input,
 } from "@chakra-ui/react";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
+import ClassEditModal from "./ClassEditModal";
 
-const ClassTable = ({ classList, destroy, edit, editName, setEditName }) => {
+const ClassTable = ({
+  classList,
+  destroy,
+  edit,
+  editName,
+  setEditName,
+  isOpen,
+  onOpen,
+  onClose,
+}) => {
   return (
     <Table variant="striped" size="lg">
       <TableCaption placement="top">Available classes</TableCaption>
@@ -35,12 +36,15 @@ const ClassTable = ({ classList, destroy, edit, editName, setEditName }) => {
             <Td isNumeric>{el.id}</Td>
             <Td>{el.name}</Td>
             <Td>
-              <EditModal
+              <ClassEditModal
                 elId={el.id}
                 elName={el.name}
                 editClick={edit}
                 editName={editName}
                 setEditName={setEditName}
+                isOpen={isOpen}
+                onOpen={onOpen}
+                onClose={onClose}
               />
             </Td>
             <Td>
@@ -57,45 +61,6 @@ const ClassTable = ({ classList, destroy, edit, editName, setEditName }) => {
         ))}
       </Tbody>
     </Table>
-  );
-};
-
-const EditModal = ({ elId, elName, editClick, editName, setEditName }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  return (
-    <>
-      <Button colorScheme="teal" w={8} h={8} onClick={onOpen}>
-        <EditIcon />
-      </Button>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Edit {elName}</ModalHeader>
-          <ModalCloseButton />
-          <form onSubmit={editClick} id={elId}>
-            <ModalBody>
-              <Input type="hidden" value={elId} />
-              <Input
-                placeholder={elName}
-                variant="filled"
-                mb={6}
-                type="text"
-                isRequired={true}
-                onChange={(e) => setEditName(e.target.value)}
-                value={editName}
-              />
-            </ModalBody>
-
-            <ModalFooter>
-              <Button colorScheme="blue" type="submit">
-                Confirm
-              </Button>
-            </ModalFooter>
-          </form>
-        </ModalContent>
-      </Modal>
-    </>
   );
 };
 

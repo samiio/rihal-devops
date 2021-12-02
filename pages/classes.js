@@ -27,9 +27,16 @@ const ClassesPage = () => {
   };
 
   const [editName, setEditName] = useState("");
+  const {
+    isOpen: isEditOpen,
+    onOpen: onEditOpen,
+    onClose: onEditClose,
+  } = useDisclosure();
+
   const handleEditClick = (e) => {
     e.preventDefault();
     classController.update(e.target.id, editName);
+    onEditClose();
     setClasses(classController.getAll().table);
   };
 
@@ -51,6 +58,9 @@ const ClassesPage = () => {
       <ClassTable
         classList={classes}
         destroy={handleDestroyClick}
+        isOpen={isEditOpen}
+        onOpen={onEditOpen}
+        onClose={onEditClose}
         edit={handleEditClick}
         editName={editName}
         setEditName={setEditName}
