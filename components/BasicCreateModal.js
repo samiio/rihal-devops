@@ -39,9 +39,9 @@ const BasicCreateModal = ({
                 variant="filled"
                 mb={6}
                 type="text"
-                isRequired="true"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
+                isRequired={true}
               />
             </ModalBody>
 

@@ -20,6 +20,12 @@ const StudentCreateModal = ({
   onClose,
   name,
   setName,
+  dob,
+  setDob,
+  classId,
+  setClassId,
+  countryId,
+  setCountryId,
   createClicked,
 }) => {
   const mappedCountries = countryController.getAll().table.map((el) => ({
@@ -50,26 +56,40 @@ const StudentCreateModal = ({
                 variant="filled"
                 mb={3}
                 type="text"
-                isRequired={true}
                 onChange={(e) => setName(e.target.value)}
                 value={name}
+                isRequired={true}
+              />
+
+              <Input
+                placeholder="Date of birth"
+                variant="filled"
+                mb={3}
+                type="date"
+                min="1900-01-01"
+                max="2003-12-31"
+                onChange={(e) => setDob(e.target.value)}
+                value={dob}
+                isRequired={true}
               />
 
               <FormControl pb={3}>
                 <Select
                   isMulti
-                  name="countryId"
+                  value={countryId}
                   options={mappedCountries}
                   placeholder="Select countries"
+                  onChange={(e) => setCountryId(e)}
                   closeMenuOnSelect={false}
                 />
               </FormControl>
 
               <Select
                 isMulti
-                name="classId"
+                value={classId}
                 options={mappedClasses}
                 placeholder="Select classes"
+                onChange={(e) => setClassId(e)}
                 closeMenuOnSelect={false}
               />
             </ModalBody>
