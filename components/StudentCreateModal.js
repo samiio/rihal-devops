@@ -8,14 +8,13 @@ import {
   ModalCloseButton,
   Button,
   Input,
-  Select,
+  FormControl,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-import SelectData from "./SelectData";
+import { Select } from "chakra-react-select";
 import { countryController, classController } from "rihal-devops-model";
 
 const StudentCreateModal = ({
-  title,
   isOpen,
   onOpen,
   onClose,
@@ -23,6 +22,15 @@ const StudentCreateModal = ({
   setName,
   createClicked,
 }) => {
+  const mappedCountries = countryController.getAll().table.map((el) => ({
+    value: el.id,
+    label: el.name,
+  }));
+  const mappedClasses = classController.getAll().table.map((el) => ({
+    value: el.id,
+    label: el.name,
+  }));
+
   return (
     <div>
       <Button colorScheme="blue" w={8} h={8} onClick={onOpen} borderRadius={50}>
@@ -32,7 +40,7 @@ const StudentCreateModal = ({
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Add {title}</ModalHeader>
+          <ModalHeader>Add Student</ModalHeader>
           <ModalCloseButton />
 
           <form onSubmit={createClicked}>
@@ -46,13 +54,23 @@ const StudentCreateModal = ({
                 onChange={(e) => setName(e.target.value)}
                 value={name}
               />
-              <SelectData
-                placeHolderString="Select Country"
-                data={countryController.getAll().table}
-              />
-              <SelectData
-                placeHolderString="Select Class"
-                data={classController.getAll().table}
+
+              <FormControl pb={3}>
+                <Select
+                  isMulti
+                  name="countryId"
+                  options={mappedCountries}
+                  placeholder="Select countries"
+                  closeMenuOnSelect={false}
+                />
+              </FormControl>
+
+              <Select
+                isMulti
+                name="classId"
+                options={mappedClasses}
+                placeholder="Select classes"
+                closeMenuOnSelect={false}
               />
             </ModalBody>
 
