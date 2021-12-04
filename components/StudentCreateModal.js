@@ -8,8 +8,11 @@ import {
   ModalCloseButton,
   Button,
   Input,
+  Select,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
+import SelectData from "./SelectData";
+import { countryController, classController } from "rihal-devops-model";
 
 const StudentCreateModal = ({
   title,
@@ -37,11 +40,19 @@ const StudentCreateModal = ({
               <Input
                 placeholder="Name"
                 variant="filled"
-                mb={6}
+                mb={3}
                 type="text"
-                isRequired="true"
+                isRequired={true}
                 onChange={(e) => setName(e.target.value)}
                 value={name}
+              />
+              <SelectData
+                placeHolderString="Select Country"
+                data={countryController.getAll().table}
+              />
+              <SelectData
+                placeHolderString="Select Class"
+                data={classController.getAll().table}
               />
             </ModalBody>
 

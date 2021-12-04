@@ -2,7 +2,7 @@ import Meta from "../components/Meta";
 import { studentController } from "rihal-devops-model";
 import { useDisclosure, Center } from "@chakra-ui/react";
 import { useState } from "react";
-import StudentCreateModal from "../components/BasicCreateModal";
+import StudentCreateModal from "../components/StudentCreateModal";
 
 const StudentsPage = () => {
   const [name, setName] = useState("");

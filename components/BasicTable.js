@@ -22,7 +22,7 @@ const BasicTable = ({
   onClose,
 }) => {
   return (
-    <Table variant="striped" size="lg">
+    <Table variant="striped">
       <TableCaption placement="top">Available classes</TableCaption>
       <Thead>
         <Tr>
