@@ -9,9 +9,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import ClassEditModal from "./ClassEditModal";
+import BasicEditModal from "./BasicEditModal";
 
-const ClassTable = ({
+const BasicTable = ({
   classList,
   destroy,
   edit,
@@ -36,7 +36,7 @@ const ClassTable = ({
             <Td isNumeric>{el.id}</Td>
             <Td>{el.name}</Td>
             <Td>
-              <ClassEditModal
+              <BasicEditModal
                 elId={el.id}
                 elName={el.name}
                 editClick={edit}
@@ -64,4 +64,4 @@ const ClassTable = ({
   );
 };
 
-export default ClassTable;
+export default BasicTable;

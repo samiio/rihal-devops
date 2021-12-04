@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 
-const ClassEditModal = ({
+const BasicEditModal = ({
   elId,
   elName,
   editClick,
@@ -58,4 +58,4 @@ const ClassEditModal = ({
   );
 };
 
-export default ClassEditModal;
+export default BasicEditModal;
