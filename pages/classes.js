@@ -8,10 +8,18 @@ import BasicCreateModal from "../components/BasicCreateModal";
 const ClassesPage = () => {
   const [classes, setClasses] = useState(classController.getAll().table);
   const [name, setName] = useState("");
+  const [editName, setEditName] = useState("");
+
   const {
     isOpen: isCreateOpen,
     onOpen: onCreateOpen,
     onClose: onCreateClose,
+  } = useDisclosure();
+
+  const {
+    isOpen: isEditOpen,
+    onOpen: onEditOpen,
+    onClose: onEditClose,
   } = useDisclosure();
 
   const handleCreateClick = (e) => {
@@ -25,13 +33,6 @@ const ClassesPage = () => {
     classController.destroy(id);
     setClasses(classController.getAll().table);
   };
-
-  const [editName, setEditName] = useState("");
-  const {
-    isOpen: isEditOpen,
-    onOpen: onEditOpen,
-    onClose: onEditClose,
-  } = useDisclosure();
 
   const handleEditClick = (e) => {
     e.preventDefault();
