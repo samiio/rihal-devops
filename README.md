@@ -1,1 +1,1 @@
-This is part on an application for [Rihal](https://github.com/rihal-om/rihal-challenges/tree/main/devops).
+This is part of my application for [Rihal](https://github.com/rihal-om/rihal-challenges/tree/main/devops).
