@@ -14,6 +14,8 @@ const StudentsPage = () => {
 
   const [editName, setEditName] = useState("");
 
+  console.log(studentController.getAll().table);
+
   const {
     isOpen: isCreateOpen,
     onOpen: onCreateOpen,

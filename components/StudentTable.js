@@ -10,6 +10,11 @@ import {
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import BasicEditModal from "./BasicEditModal";
+import {
+  studentController,
+  countryController,
+  classController,
+} from "rihal-devops-model";
 
 const StudentTable = ({
   students,
@@ -21,6 +26,18 @@ const StudentTable = ({
   onOpen,
   onClose,
 }) => {
+  const getCountryString = (countryId) => {
+    const countries = countryController.getAll();
+    const names = countryId.map((id) => countries.getRecordById(id).name);
+    return names.join(", ");
+  };
+
+  const getClassString = (classId) => {
+    const classes = classController.getAll();
+    const names = classId.map((id) => classes.getRecordById(id).name);
+    return names.join(", ");
+  };
+
   return (
     <Table variant="striped">
       <TableCaption placement="top">Students</TableCaption>
@@ -28,7 +45,9 @@ const StudentTable = ({
         <Tr>
           <Th>ID</Th>
           <Th>Name</Th>
-          <Th>D.O.B.</Th>
+          <Th>Age</Th>
+          <Th>Country</Th>
+          <Th>Classes</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -36,7 +55,9 @@ const StudentTable = ({
           <Tr key={el.id}>
             <Td isNumeric>{el.id}</Td>
             <Td>{el.name}</Td>
-            <Td>{el.dob}</Td>
+            <Td>{el.getAge()}</Td>
+            <Td>{getCountryString(el.countryId)}</Td>
+            <Td>{getClassString(el.classId)}</Td>
             <Td>
               <BasicEditModal
                 elId={el.id}
