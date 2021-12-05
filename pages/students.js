@@ -52,13 +52,11 @@ const StudentsPage = () => {
 
   const handleEditClick = (e) => {
     e.preventDefault();
-    console.log(e.target.id);
-    console.log(editName);
-    console.log(editDob);
-    console.log(editCountryId);
-    console.log(editClassId);
+    editClassId = editClassId.map((el) => el.value);
+    editCountryId = editCountryId.map((el) => el.value);
+    studentController.update(e.target.id, editName, editDob, editClassId, editCountryId);
     onEditClose();
-    // setStudents(studentController.getAll().table);
+    setStudents(studentController.getAll().table);
   }
 
   return (
