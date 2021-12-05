@@ -9,22 +9,28 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import BasicEditModal from "./BasicEditModal";
 import {
   studentController,
   countryController,
   classController,
 } from "rihal-devops-model";
+import StudentEditModal from "./StudentEditModal";
 
 const StudentTable = ({
   students,
   destroy,
   edit,
-  editName,
-  setEditName,
   isOpen,
   onOpen,
   onClose,
+  editName,
+  setEditName,
+  editDob,
+  setEditDob,
+  editClassId,
+  setEditClassId,
+  editCountryId,
+  setEditCountryId,
 }) => {
   const getCountryString = (countryId) => {
     const countries = countryController.getAll();
@@ -59,15 +65,22 @@ const StudentTable = ({
             <Td>{getCountryString(el.countryId)}</Td>
             <Td>{getClassString(el.classId)}</Td>
             <Td>
-              <BasicEditModal
-                elId={el.id}
-                elName={el.name}
-                editClick={edit}
-                editName={editName}
-                setEditName={setEditName}
+              <StudentEditModal
                 isOpen={isOpen}
                 onOpen={onOpen}
                 onClose={onClose}
+                elId={el.id}
+                elName={el.name}
+                elDob={el.dob}
+                editName={editName}
+                setEditName={setEditName}
+                editDob={editDob}
+                setEditDob={setEditDob}
+                editClassId={editClassId}
+                setEditClassId={setEditClassId}
+                editCountryId={editCountryId}
+                setEditCountryId={setEditCountryId}
+                editClicked={edit}
               />
             </Td>
             <Td>

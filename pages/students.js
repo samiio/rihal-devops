@@ -13,8 +13,9 @@ const StudentsPage = () => {
   const [classId, setClassId] = useState(null);
 
   const [editName, setEditName] = useState("");
-
-  console.log(studentController.getAll().table);
+  const [editDob, setEditDob] = useState("");
+  const [editCountryId, setEditCountryId] = useState(null);
+  const [editClassId, setEditClassId] = useState(null);
 
   const {
     isOpen: isCreateOpen,
@@ -50,7 +51,14 @@ const StudentsPage = () => {
   };
 
   const handleEditClick = (e) => {
-
+    e.preventDefault();
+    console.log(e.target.id);
+    console.log(editName);
+    console.log(editDob);
+    console.log(editCountryId);
+    console.log(editClassId);
+    onEditClose();
+    // setStudents(studentController.getAll().table);
   }
 
   return (
@@ -80,9 +88,15 @@ const StudentsPage = () => {
         isOpen={isEditOpen}
         onOpen={onEditOpen}
         onClose={onEditClose}
-        edit={handleEditClick}
         editName={editName}
         setEditName={setEditName}
+        editDob={editDob}
+        setEditDob={setEditDob}
+        editClassId={editClassId}
+        setEditClassId={setEditClassId}
+        editCountryId={editCountryId}
+        setEditCountryId={setEditCountryId}
+        edit={handleEditClick}
       />
     </div>
   );
