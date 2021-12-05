@@ -1,1 +1,1 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+This is part on an application for [Rihal](https://github.com/rihal-om/rihal-challenges/tree/main/devops).
