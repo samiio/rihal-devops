@@ -5,6 +5,7 @@ import { useState } from "react";
 import StudentCreateModal from "../components/StudentCreateModal";
 
 const StudentsPage = () => {
+  const [students, setStudents] = useState(studentController.getAll().table);
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
   const [countryId, setCountryId] = useState(null);
@@ -18,12 +19,18 @@ const StudentsPage = () => {
 
   const handleCreateClick = (e) => {
     e.preventDefault();
-    // studentController.create(name, dob, )
-    console.log(name);
-    console.log(dob);
-    console.log(countryId.map((el) => el.value));
-    console.log(classId.map((el) => el.value));
+    classId = classId.map((el) => el.value);
+    countryId = countryId.map((el) => el.value);
+    studentController.create(name, dob, classId, countryId);
+
+    // Calling update() after create()
+    // create() does not insert countryId
+    const myTable = studentController.getAll().table;
+    const id = myTable[myTable.length - 1].id;
+    studentController.update(id, name, dob, classId, countryId);
+
     onCreateClose();
+    setStudents(studentController.getAll().table);
   };
 
   return (

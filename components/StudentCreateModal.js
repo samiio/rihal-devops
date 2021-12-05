@@ -80,7 +80,7 @@ const StudentCreateModal = ({
                   options={mappedCountries}
                   placeholder="Select countries"
                   onChange={(e) => setCountryId(e)}
-                  closeMenuOnSelect={false}
+                  isRequired={true}
                 />
               </FormControl>
 
@@ -90,7 +90,7 @@ const StudentCreateModal = ({
                 options={mappedClasses}
                 placeholder="Select classes"
                 onChange={(e) => setClassId(e)}
-                closeMenuOnSelect={false}
+                isRequired={true}
               />
             </ModalBody>
 
