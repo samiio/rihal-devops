@@ -1,5 +1,5 @@
 import Meta from "../components/Meta";
-import { classController } from "rihal-devops-model";
+import { classController, studentController } from "rihal-devops-model";
 import { useDisclosure, Center } from "@chakra-ui/react";
 import { useState } from "react";
 import BasicTable from "../components/BasicTable";
@@ -41,6 +41,12 @@ const ClassesPage = () => {
     setClasses(classController.getAll().table);
   };
 
+  const getCount = (id) => {
+    const students = studentController.getAll().table;
+    const aClass = classController.getAll().getRecordById(id);
+    return aClass.getCount(students);
+  }
+
   return (
     <div>
       <Meta title="Classes" />
@@ -66,6 +72,7 @@ const ClassesPage = () => {
         edit={handleEditClick}
         editName={editName}
         setEditName={setEditName}
+        countFunc={getCount}
       />
     </div>
   );

@@ -20,6 +20,7 @@ const BasicTable = ({
   isOpen,
   onOpen,
   onClose,
+  countFunc,
 }) => {
   return (
     <Table variant="striped">
@@ -28,6 +29,7 @@ const BasicTable = ({
         <Tr>
           <Th>ID</Th>
           <Th>Class</Th>
+          <Th>Count</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -35,6 +37,7 @@ const BasicTable = ({
           <Tr key={el.id}>
             <Td isNumeric>{el.id}</Td>
             <Td>{el.name}</Td>
+            <Td>{countFunc(el.id)}</Td>
             <Td>
               <BasicEditModal
                 elId={el.id}
