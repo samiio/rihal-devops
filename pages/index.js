@@ -8,6 +8,7 @@ import {
   ListItem,
   UnorderedList,
   Tooltip,
+  Divider,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
@@ -15,7 +16,7 @@ const IndexPage = () => {
   const hello = "hello";
   return (
     <div>
-      <Box className="header" mb={8}>
+      <Box className="header" mb={6}>
         <Text fontSize="4xl">Rihal Devops Challenge</Text>
         <Text textAlign="center">
           <Link
@@ -29,7 +30,9 @@ const IndexPage = () => {
         </Text>
       </Box>
 
-      <Box mb={8}>
+      <Divider />
+
+      <Box mt={6} mb={6}>
         <Text textAlign="center">
           <Link
             href="https://github.com/samiio/rihal-devops"
@@ -43,7 +46,7 @@ const IndexPage = () => {
         </Text>
       </Box>
 
-      <Box mb={8}>
+      <Box mt={6} mb={6}>
         <Text fontSize="lg">NPM package to model the data</Text>
         <UnorderedList>
           <ListItem>
@@ -67,7 +70,9 @@ const IndexPage = () => {
         </UnorderedList>
       </Box>
 
-      <Box mb={8}>
+      <Divider />
+
+      <Box mt={6} mb={6}>
         <Text textAlign="center" fontSize="lg">
           Built using
         </Text>
@@ -97,6 +102,22 @@ const IndexPage = () => {
             </Tooltip>
           </Stack>
         </Center>
+      </Box>
+
+      <Divider />
+
+      <Box mt={6} mb={6}>
+        <Text fontSize="lg">To do</Text>
+        <UnorderedList>
+          <ListItem>
+            <Text>Refactor and fix bug on edit button (edits last record)</Text>
+          </ListItem>
+          <ListItem>
+            <Text>
+              Improve UX (remove class/country from student on delete)
+            </Text>
+          </ListItem>
+        </UnorderedList>
       </Box>
     </div>
   );
