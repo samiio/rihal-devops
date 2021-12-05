@@ -15,7 +15,6 @@ const Layout = ({ children }) => {
             padding={10}
             spacing={10}
             alignItems="center"
-            bg="gray.50"
           >
             {!ssr ? children : null}
           </VStack>
