@@ -1,5 +1,5 @@
 import Meta from "../components/Meta";
-import { countryController } from "rihal-devops-model";
+import { countryController, studentController } from "rihal-devops-model";
 import { useDisclosure, Center } from "@chakra-ui/react";
 import { useState } from "react";
 import BasicTable from "../components/BasicTable";
@@ -41,6 +41,18 @@ const CountriesPage = () => {
     setCountries(countryController.getAll().table);
   };
 
+  const getCount = (id) => {
+    const students = studentController.getAll().table;
+    const country = countryController.getAll().getRecordById(id);
+    return country.getCount(students);
+  };
+
+  const getAverageAge = (id) => {
+    const students = studentController.getAll().table;
+    const country = countryController.getAll().getRecordById(id);
+    return country.getAverageAge(students);
+  };
+
   return (
     <div>
       <Meta title="Countries" />
@@ -66,6 +78,8 @@ const CountriesPage = () => {
         edit={handleEditClick}
         editName={editName}
         setEditName={setEditName}
+        getCount={getCount}
+        getAverageAge={getAverageAge}
       />
     </div>
   );

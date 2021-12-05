@@ -47,6 +47,12 @@ const ClassesPage = () => {
     return aClass.getCount(students);
   }
 
+  const getAverageAge = (id) => {
+    const students = studentController.getAll().table;
+    const aClass = classController.getAll().getRecordById(id);
+    return aClass.getAverageAge(students);
+  }
+
   return (
     <div>
       <Meta title="Classes" />
@@ -72,7 +78,8 @@ const ClassesPage = () => {
         edit={handleEditClick}
         editName={editName}
         setEditName={setEditName}
-        countFunc={getCount}
+        getCount={getCount}
+        getAverageAge={getAverageAge}
       />
     </div>
   );

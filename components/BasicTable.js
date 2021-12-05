@@ -20,7 +20,8 @@ const BasicTable = ({
   isOpen,
   onOpen,
   onClose,
-  countFunc,
+  getCount,
+  getAverageAge,
 }) => {
   return (
     <Table variant="striped">
@@ -30,6 +31,7 @@ const BasicTable = ({
           <Th>ID</Th>
           <Th>Class</Th>
           <Th>Count</Th>
+          <Th>Average Age</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -37,7 +39,8 @@ const BasicTable = ({
           <Tr key={el.id}>
             <Td isNumeric>{el.id}</Td>
             <Td>{el.name}</Td>
-            <Td>{countFunc(el.id)}</Td>
+            <Td>{getCount(el.id)}</Td>
+            <Td>{getAverageAge(el.id)}</Td>
             <Td>
               <BasicEditModal
                 elId={el.id}
