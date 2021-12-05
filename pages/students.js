@@ -42,9 +42,10 @@ const StudentsPage = () => {
     setStudents(studentController.getAll().table);
   };
 
-  const handleDestroyClick = (e) => {
-
-  }
+  const handleDestroyClick = (id) => {
+    studentController.destory(id);
+    setStudents(studentController.getAll().table);
+  };
 
   const handleEditClick = (e) => {
 
