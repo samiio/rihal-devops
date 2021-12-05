@@ -15,6 +15,7 @@ import {
   classController,
 } from "rihal-devops-model";
 import StudentEditModal from "./StudentEditModal";
+import BasicEditModal from "./BasicEditModal";
 
 const StudentTable = ({
   students,

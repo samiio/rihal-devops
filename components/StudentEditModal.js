@@ -72,7 +72,7 @@ const StudentEditModal = ({
                 min="1900-01-01"
                 max="2003-12-31"
                 onChange={(e) => setEditDob(e.target.value)}
-                value={editDob}
+                value={elDob}
                 isRequired={true}
               />
 

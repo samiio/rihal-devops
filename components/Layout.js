@@ -2,7 +2,7 @@ import { Container, Flex, VStack } from "@chakra-ui/react";
 import Nav from "./Nav";
 
 const Layout = ({ children }) => {
-  const SSR = typeof window === "undefined";
+  const ssr = typeof window === "undefined";
 
   return (
     <div>
@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
             alignItems="center"
             bg="gray.50"
           >
-            {!SSR ? children : null}
+            {!ssr ? children : null}
           </VStack>
         </Flex>
       </Container>
