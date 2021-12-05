@@ -3,6 +3,7 @@ import { studentController } from "rihal-devops-model";
 import { useDisclosure, Center } from "@chakra-ui/react";
 import { useState } from "react";
 import StudentCreateModal from "../components/StudentCreateModal";
+import StudentTable from "../components/StudentTable";
 
 const StudentsPage = () => {
   const [students, setStudents] = useState(studentController.getAll().table);
@@ -11,10 +12,18 @@ const StudentsPage = () => {
   const [countryId, setCountryId] = useState(null);
   const [classId, setClassId] = useState(null);
 
+  const [editName, setEditName] = useState("");
+
   const {
     isOpen: isCreateOpen,
     onOpen: onCreateOpen,
     onClose: onCreateClose,
+  } = useDisclosure();
+
+  const {
+    isOpen: isEditOpen,
+    onOpen: onEditOpen,
+    onClose: onEditClose,
   } = useDisclosure();
 
   const handleCreateClick = (e) => {
@@ -33,8 +42,18 @@ const StudentsPage = () => {
     setStudents(studentController.getAll().table);
   };
 
+  const handleDestroyClick = (e) => {
+
+  }
+
+  const handleEditClick = (e) => {
+
+  }
+
   return (
     <div>
+      <Meta title="Students" />
+
       <Center>
         <StudentCreateModal
           isOpen={isCreateOpen}
@@ -51,7 +70,17 @@ const StudentsPage = () => {
           createClicked={handleCreateClick}
         />
       </Center>
-      <Meta title="Students" />
+
+      <StudentTable
+        students={students}
+        destroy={handleDestroyClick}
+        isOpen={isEditOpen}
+        onOpen={onEditOpen}
+        onClose={onEditClose}
+        edit={handleEditClick}
+        editName={editName}
+        setEditName={setEditName}
+      />
     </div>
   );
 };
