@@ -47,7 +47,9 @@ const StudentTable = ({
 
   return (
     <Table variant="striped">
-      <TableCaption placement="top">Average Age - {studentController.getAverageAge()}</TableCaption>
+      <TableCaption placement="top">
+        The average age of all students is {studentController.getAverageAge()}.
+      </TableCaption>
       <Thead>
         <Tr>
           <Th>ID</Th>
