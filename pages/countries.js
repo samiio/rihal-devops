@@ -70,6 +70,8 @@ const CountriesPage = () => {
       </Center>
 
       <BasicTable
+        title="Country"
+        caption="Available countries"
         classList={countries}
         destroy={handleDestroyClick}
         isOpen={isEditOpen}

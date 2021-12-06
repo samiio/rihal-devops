@@ -70,6 +70,8 @@ const ClassesPage = () => {
       </Center>
 
       <BasicTable
+        title="Class"
+        caption="Available classes"
         classList={classes}
         destroy={handleDestroyClick}
         isOpen={isEditOpen}

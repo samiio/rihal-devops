@@ -12,6 +12,8 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import BasicEditModal from "./BasicEditModal";
 
 const BasicTable = ({
+  title,
+  caption,
   classList,
   destroy,
   edit,
@@ -25,11 +27,11 @@ const BasicTable = ({
 }) => {
   return (
     <Table variant="striped">
-      <TableCaption placement="top">Available classes</TableCaption>
+      <TableCaption placement="top">{caption}</TableCaption>
       <Thead>
         <Tr>
           <Th>ID</Th>
-          <Th>Class</Th>
+          <Th>{title}</Th>
           <Th>Count</Th>
           <Th>Average Age</Th>
         </Tr>
