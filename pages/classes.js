@@ -50,7 +50,8 @@ const ClassesPage = () => {
   const getAverageAge = (id) => {
     const students = studentController.getAll().table;
     const aClass = classController.getAll().getRecordById(id);
-    return aClass.getAverageAge(students);
+    const average = aClass.getAverageAge(students);
+    return Number.isNaN(average) ? 0 : average;
   }
 
   return (

@@ -45,10 +45,15 @@ const StudentTable = ({
     return names.join(", ");
   };
 
+  const getAverageAge = () => {
+    const average = studentController.getAverageAge();
+    return Number.isNaN(average) ? 0 : average;
+  }
+
   return (
     <Table variant="striped">
       <TableCaption placement="top">
-        The average age of all students is {studentController.getAverageAge()}.
+        The average age of all students is {getAverageAge()}.
       </TableCaption>
       <Thead>
         <Tr>
