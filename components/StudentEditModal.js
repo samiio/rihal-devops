@@ -11,8 +11,8 @@ import {
   FormControl,
 } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
-import { Select } from "chakra-react-select";
 import { countryController, classController } from "rihal-devops-model";
+import FixedSelect from "./FixedSelect";
 
 const StudentEditModal = ({
   isOpen,
@@ -77,23 +77,23 @@ const StudentEditModal = ({
               />
 
               <FormControl pb={3}>
-                <Select
+                <FixedSelect
                   isMulti
                   value={editCountryId}
                   options={mappedCountries}
                   placeholder="Select countries"
                   onChange={(e) => setEditCountryId(e)}
-                  isRequired={true}
+                  required
                 />
               </FormControl>
 
-              <Select
+              <FixedSelect
                 isMulti
                 value={editClassId}
                 options={mappedClasses}
                 placeholder="Select classes"
                 onChange={(e) => setEditClassId(e)}
-                isRequired={true}
+                required
               />
             </ModalBody>
 
