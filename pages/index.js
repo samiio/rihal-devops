@@ -13,7 +13,6 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const IndexPage = () => {
-  const hello = "hello";
   return (
     <div>
       <Box className="header" mb={6}>
@@ -110,7 +109,7 @@ const IndexPage = () => {
         <Text fontSize="lg">To do</Text>
         <UnorderedList>
           <ListItem>
-            <Text>Refactor and fix bug on edit button (edits last record)</Text>
+            <Text>Refactor (maybe use hooks)</Text>
           </ListItem>
           <ListItem>
             <Text>
