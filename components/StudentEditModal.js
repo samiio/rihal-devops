@@ -13,86 +13,117 @@ import {
 import { EditIcon } from "@chakra-ui/icons";
 import { countryController, classController } from "rihal-devops-model";
 import FixedSelect from "./FixedSelect";
+import { useState } from "react";
 
-const StudentEditModal = ({
-  isOpen,
-  onOpen,
-  onClose,
-  elId,
-  elName,
-  elDob,
-  editName,
-  setEditName,
-  editDob,
-  setEditDob,
-  editClassId,
-  setEditClassId,
-  editCountryId,
-  setEditCountryId,
-  editClicked,
-}) => {
+const StudentEditModal = ({ elId, student, onItemEdited }) => {
   const mappedCountries = countryController.getAll().table.map((el) => ({
     value: el.id,
     label: el.name,
   }));
+
   const mappedClasses = classController.getAll().table.map((el) => ({
     value: el.id,
     label: el.name,
   }));
 
+  const [isEditingItem, setIsEditingItem] = useState(false);
+  const [editedStudent, setEditedStudent] = useState({
+    ...student,
+    classId: student.classId.map((id) => ({
+      value: id,
+      label: mappedClasses.find((el) => el.value === id)?.label,
+    })),
+    countryId: student.countryId.map((id) => ({
+      value: id,
+      label: mappedCountries.find((el) => el.value === id)?.label,
+    })),
+  });
+
+  const toggleModal = () => {
+    setIsEditingItem(!isEditingItem);
+  };
+
+  const onEditFormSubmit = (e) => {
+    e.preventDefault();
+    toggleModal();
+    onItemEdited({
+      ...editedStudent,
+      classId: editedStudent.classId.map((el) => el.value),
+      countryId: editedStudent.countryId.map((el) => el.value),
+    });
+  };
+
   return (
     <div>
-      <Button colorScheme="teal" w={8} h={8} onClick={onOpen}>
+      <Button colorScheme="teal" w={8} h={8} onClick={toggleModal}>
         <EditIcon />
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isEditingItem} onClose={toggleModal}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Edit {elName}</ModalHeader>
+          <ModalHeader>Edit {student.name}</ModalHeader>
           <ModalCloseButton />
 
-          <form onSubmit={editClicked} id={elId}>
+          <form onSubmit={onEditFormSubmit} id={elId}>
             <ModalBody>
               <Input
-                placeholder={elName}
                 variant="filled"
                 mb={3}
                 type="text"
-                onChange={(e) => setEditName(e.target.value)}
-                value={editName}
+                onChange={(e) =>
+                  setEditedStudent((student) => {
+                    student.name = e.target.value;
+                    return { ...student };
+                  })
+                }
+                value={editedStudent.name}
                 isRequired={true}
               />
 
               <Input
-                placeholder={elDob}
                 variant="filled"
                 mb={3}
                 type="date"
                 min="1900-01-01"
                 max="2003-12-31"
-                onChange={(e) => setEditDob(e.target.value)}
-                value={editDob}
+                onChange={(e) =>
+                  setEditedStudent((student) => {
+                    student.dob = e.target.value;
+                    return { ...student };
+                  })
+                }
+                value={editedStudent.dob}
                 isRequired={true}
               />
 
               <FormControl pb={3}>
                 <FixedSelect
                   isMulti
-                  value={editCountryId}
                   options={mappedCountries}
                   placeholder="Select countries"
-                  onChange={(e) => setEditCountryId(e)}
+                  onChange={(value) =>
+                    setEditedStudent((student) => {
+                      student.countryId = value;
+                      return { ...student };
+                    })
+                  }
+                  value={editedStudent.countryId}
                   required
                 />
               </FormControl>
 
               <FixedSelect
                 isMulti
-                value={editClassId}
                 options={mappedClasses}
                 placeholder="Select classes"
-                onChange={(e) => setEditClassId(e)}
+                onChange={(value) =>
+                  setEditedStudent((student) => {
+                    student.classId = value;
+                    return { ...student };
+                  })
+                }
+                value={editedStudent.classId}
                 required
               />
             </ModalBody>

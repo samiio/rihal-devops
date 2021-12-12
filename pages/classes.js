@@ -8,18 +8,11 @@ import BasicCreateModal from "../components/BasicCreateModal";
 const ClassesPage = () => {
   const [classes, setClasses] = useState(classController.getAll().table);
   const [name, setName] = useState("");
-  const [editName, setEditName] = useState("");
 
   const {
     isOpen: isCreateOpen,
     onOpen: onCreateOpen,
     onClose: onCreateClose,
-  } = useDisclosure();
-
-  const {
-    isOpen: isEditOpen,
-    onOpen: onEditOpen,
-    onClose: onEditClose,
   } = useDisclosure();
 
   const handleCreateClick = (e) => {
@@ -34,25 +27,23 @@ const ClassesPage = () => {
     setClasses(classController.getAll().table);
   };
 
-  const handleEditClick = (e) => {
-    e.preventDefault();
-    classController.update(e.target.id, editName);
-    onEditClose();
-    setClasses(classController.getAll().table);
-  };
-
   const getCount = (id) => {
     const students = studentController.getAll().table;
     const aClass = classController.getAll().getRecordById(id);
     return aClass.getCount(students);
-  }
+  };
 
   const getAverageAge = (id) => {
     const students = studentController.getAll().table;
     const aClass = classController.getAll().getRecordById(id);
     const average = aClass.getAverageAge(students);
     return Number.isNaN(average) ? 0 : average;
-  }
+  };
+
+  const onItemEdited = (id, value) => {
+    classController.update(id, value);
+    setClasses(classController.getAll().table);
+  };
 
   return (
     <div>
@@ -75,12 +66,7 @@ const ClassesPage = () => {
         caption="Available classes"
         classList={classes}
         destroy={handleDestroyClick}
-        isOpen={isEditOpen}
-        onOpen={onEditOpen}
-        onClose={onEditClose}
-        edit={handleEditClick}
-        editName={editName}
-        setEditName={setEditName}
+        onItemEdited={onItemEdited}
         getCount={getCount}
         getAverageAge={getAverageAge}
       />

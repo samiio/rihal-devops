@@ -15,24 +15,8 @@ import {
   classController,
 } from "rihal-devops-model";
 import StudentEditModal from "./StudentEditModal";
-import BasicEditModal from "./BasicEditModal";
 
-const StudentTable = ({
-  students,
-  destroy,
-  edit,
-  isOpen,
-  onOpen,
-  onClose,
-  editName,
-  setEditName,
-  editDob,
-  setEditDob,
-  editClassId,
-  setEditClassId,
-  editCountryId,
-  setEditCountryId,
-}) => {
+const StudentTable = ({ students, destroy, onItemEdited }) => {
   const getCountryString = (countryId) => {
     const countries = countryController.getAll();
     const names = countryId.map((id) => countries.getRecordById(id).name);
@@ -48,7 +32,7 @@ const StudentTable = ({
   const getAverageAge = () => {
     const average = studentController.getAverageAge();
     return Number.isNaN(average) ? 0 : average;
-  }
+  };
 
   return (
     <Table variant="striped">
@@ -74,21 +58,9 @@ const StudentTable = ({
             <Td>{getClassString(el.classId)}</Td>
             <Td>
               <StudentEditModal
-                isOpen={isOpen}
-                onOpen={onOpen}
-                onClose={onClose}
                 elId={el.id}
-                elName={el.name}
-                elDob={el.dob}
-                editName={editName}
-                setEditName={setEditName}
-                editDob={editDob}
-                setEditDob={setEditDob}
-                editClassId={editClassId}
-                setEditClassId={setEditClassId}
-                editCountryId={editCountryId}
-                setEditCountryId={setEditCountryId}
-                editClicked={edit}
+                student={el}
+                onItemEdited={(value) => onItemEdited(el.id, value)}
               />
             </Td>
             <Td>

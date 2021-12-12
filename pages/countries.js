@@ -8,18 +8,11 @@ import BasicCreateModal from "../components/BasicCreateModal";
 const CountriesPage = () => {
   const [countries, setCountries] = useState(countryController.getAll().table);
   const [name, setName] = useState("");
-  const [editName, setEditName] = useState("");
 
   const {
     isOpen: isCreateOpen,
     onOpen: onCreateOpen,
     onClose: onCreateClose,
-  } = useDisclosure();
-
-  const {
-    isOpen: isEditOpen,
-    onOpen: onEditOpen,
-    onClose: onEditClose,
   } = useDisclosure();
 
   const handleCreateClick = (e) => {
@@ -34,13 +27,6 @@ const CountriesPage = () => {
     setCountries(countryController.getAll().table);
   };
 
-  const handleEditClick = (e) => {
-    e.preventDefault();
-    countryController.update(e.target.id, editName);
-    onEditClose();
-    setCountries(countryController.getAll().table);
-  };
-
   const getCount = (id) => {
     const students = studentController.getAll().table;
     const country = countryController.getAll().getRecordById(id);
@@ -52,6 +38,11 @@ const CountriesPage = () => {
     const country = countryController.getAll().getRecordById(id);
     const average = country.getAverageAge(students);
     return Number.isNaN(average) ? 0 : average;
+  };
+
+  const onItemEdited = (id, value) => {
+    countryController.update(id, value);
+    setCountries(countryController.getAll().table);
   };
 
   return (
@@ -75,12 +66,7 @@ const CountriesPage = () => {
         caption="Available countries"
         classList={countries}
         destroy={handleDestroyClick}
-        isOpen={isEditOpen}
-        onOpen={onEditOpen}
-        onClose={onEditClose}
-        edit={handleEditClick}
-        editName={editName}
-        setEditName={setEditName}
+        onItemEdited={onItemEdited}
         getCount={getCount}
         getAverageAge={getAverageAge}
       />

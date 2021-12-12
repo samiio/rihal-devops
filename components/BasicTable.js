@@ -16,12 +16,7 @@ const BasicTable = ({
   caption,
   classList,
   destroy,
-  edit,
-  editName,
-  setEditName,
-  isOpen,
-  onOpen,
-  onClose,
+  onItemEdited,
   getCount,
   getAverageAge,
 }) => {
@@ -37,36 +32,33 @@ const BasicTable = ({
         </Tr>
       </Thead>
       <Tbody>
-        {classList.map((el) => (
-          <Tr key={el.id}>
-            <Td isNumeric>{el.id}</Td>
-            <Td>{el.name}</Td>
-            <Td>{getCount(el.id)}</Td>
-            <Td>{getAverageAge(el.id)}</Td>
-            <Td>
-              <BasicEditModal
-                elId={el.id}
-                elName={el.name}
-                editClick={edit}
-                editName={editName}
-                setEditName={setEditName}
-                isOpen={isOpen}
-                onOpen={onOpen}
-                onClose={onClose}
-              />
-            </Td>
-            <Td>
-              <Button
-                colorScheme="red"
-                w={8}
-                h={8}
-                onClick={() => destroy(el.id)}
-              >
-                <DeleteIcon />
-              </Button>
-            </Td>
-          </Tr>
-        ))}
+        {classList.map((el) => {
+          return (
+            <Tr key={el.id}>
+              <Td isNumeric>{el.id}</Td>
+              <Td>{el.name}</Td>
+              <Td>{getCount(el.id)}</Td>
+              <Td>{getAverageAge(el.id)}</Td>
+              <Td>
+                <BasicEditModal
+                  elId={el.id}
+                  elName={el.name}
+                  onItemEdited={(value) => onItemEdited(el.id, value)}
+                />
+              </Td>
+              <Td>
+                <Button
+                  colorScheme="red"
+                  w={8}
+                  h={8}
+                  onClick={() => destroy(el.id)}
+                >
+                  <DeleteIcon />
+                </Button>
+              </Td>
+            </Tr>
+          );
+        })}
       </Tbody>
     </Table>
   );

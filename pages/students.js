@@ -12,21 +12,10 @@ const StudentsPage = () => {
   const [countryId, setCountryId] = useState(null);
   const [classId, setClassId] = useState(null);
 
-  const [editName, setEditName] = useState("");
-  const [editDob, setEditDob] = useState("");
-  const [editCountryId, setEditCountryId] = useState(null);
-  const [editClassId, setEditClassId] = useState(null);
-
   const {
     isOpen: isCreateOpen,
     onOpen: onCreateOpen,
     onClose: onCreateClose,
-  } = useDisclosure();
-
-  const {
-    isOpen: isEditOpen,
-    onOpen: onEditOpen,
-    onClose: onEditClose,
   } = useDisclosure();
 
   const handleCreateClick = (e) => {
@@ -50,14 +39,10 @@ const StudentsPage = () => {
     setStudents(studentController.getAll().table);
   };
 
-  const handleEditClick = (e) => {
-    e.preventDefault();
-    editClassId = editClassId.map((el) => el.value);
-    editCountryId = editCountryId.map((el) => el.value);
-    studentController.update(e.target.id, editName, editDob, editClassId, editCountryId);
-    onEditClose();
+  const onItemEdited = (id, { name, dob, classId, countryId }) => {
+    studentController.update(id, name, dob, classId, countryId);
     setStudents(studentController.getAll().table);
-  }
+  };
 
   return (
     <div>
@@ -83,18 +68,7 @@ const StudentsPage = () => {
       <StudentTable
         students={students}
         destroy={handleDestroyClick}
-        isOpen={isEditOpen}
-        onOpen={onEditOpen}
-        onClose={onEditClose}
-        editName={editName}
-        setEditName={setEditName}
-        editDob={editDob}
-        setEditDob={setEditDob}
-        editClassId={editClassId}
-        setEditClassId={setEditClassId}
-        editCountryId={editCountryId}
-        setEditCountryId={setEditCountryId}
-        edit={handleEditClick}
+        onItemEdited={onItemEdited}
       />
     </div>
   );
